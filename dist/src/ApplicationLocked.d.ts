@@ -1,5 +1,5 @@
-import { PinResultStatus } from "./utils";
-import * as React from "react";
+import { PinResultStatus } from './utils';
+import * as React from 'react';
 export declare type IProps = {
     buttonComponent?: any;
     changeStatus: (status: PinResultStatus) => void;
@@ -28,6 +28,8 @@ export declare type IProps = {
     timeToLock: number;
     timerComponent?: any;
     titleComponent?: any;
+    footerComponent?: any;
+    fontFamily?: string;
 };
 export declare type IState = {
     timeDiff: number;

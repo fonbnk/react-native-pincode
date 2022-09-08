@@ -79,8 +79,8 @@ export interface IProps {
     passcodeFallback?: boolean;
     vibrationEnabled?: boolean;
     delayBetweenAttempts?: number;
-    footerComponent: any;
-    deleteIcon: any;
+    footerComponent?: any;
+    fontFamily?: string;
 }
 export interface IState {
     pinCodeStatus: PinResultStatus;

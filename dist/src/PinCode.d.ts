@@ -1,5 +1,5 @@
-import * as React from "react";
-import { StyleProp, TextStyle, ViewStyle } from "react-native";
+import * as React from 'react';
+import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 /**
  * Pin Code Component
  */
@@ -22,7 +22,7 @@ export interface IProps {
     numbersButtonOverlayColor: string;
     passwordComponent?: any;
     passwordLength: number;
-    pinCodeStatus?: "initial" | "success" | "failure" | "locked";
+    pinCodeStatus?: 'initial' | 'success' | 'failure' | 'locked';
     pinCodeVisible?: boolean;
     previousPin?: string;
     sentenceTitle: string;
@@ -65,7 +65,8 @@ export interface IProps {
     validationRegex?: RegExp;
     vibrationEnabled?: boolean;
     delayBetweenAttempts?: number;
-    deleteIcon: any;
+    footerComponent?: any;
+    fontFamily?: string;
 }
 export interface IState {
     password: string;

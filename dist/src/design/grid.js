@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.grid = void 0;
 const grid = {
-    unit: 16,
+    unit: 20,
     headline: 32,
     title: 24,
     subheader: 18,
@@ -15,6 +15,6 @@ const grid = {
     borderRadius: 2,
     lowOpacity: 0.4,
     mediumOpacity: 0.6,
-    highOpacity: 0.8
+    highOpacity: 0.8,
 };
 exports.grid = grid;

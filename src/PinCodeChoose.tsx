@@ -1,136 +1,134 @@
-import PinCode, { PinStatus } from './PinCode'
-import { noBiometricsConfig } from './utils'
+import PinCode, { PinStatus } from './PinCode';
+import { noBiometricsConfig } from './utils';
 
-import * as React from 'react'
-import { StyleProp, StyleSheet, TextStyle, View, ViewStyle, Dimensions } from 'react-native'
-import * as Keychain from 'react-native-keychain'
-
-const width = Dimensions.get('screen').width;
+import * as React from 'react';
+import {
+  StyleProp,
+  StyleSheet,
+  TextStyle,
+  View,
+  ViewStyle,
+} from 'react-native';
+import * as Keychain from 'react-native-keychain';
 
 /**
  * Pin Code Choose PIN Page
  */
 
 export interface IProps {
-  alphabetCharsVisible?: boolean
-  buttonDeleteComponent: any
-  buttonDeleteText?: string
-  buttonNumberComponent: any
-  colorCircleButtons?: string
-  colorPassword?: string
-  colorPasswordEmpty?: string
-  colorPasswordError?: string
-  customBackSpaceIcon?: any
-  emptyColumnComponent: any
-  finishProcess?: (pinCode: string) => void
-  getCurrentLength?: (length: number) => void
-  iconButtonDeleteDisabled?: boolean
-  numbersButtonOverlayColor?: string
-  passwordComponent: any
-  passwordLength?: number
-  pinCodeKeychainName: string
-  pinCodeVisible?: boolean
-  storePin: any
-  styleAlphabet?: StyleProp<TextStyle>
-  styleButtonCircle?: StyleProp<ViewStyle>
-  styleCircleHiddenPassword?: StyleProp<ViewStyle>
-  styleCircleSizeEmpty?: number
-  styleCircleSizeFull?: number
-  styleColorButtonTitle?: string
-  styleColorButtonTitleSelected?: string
-  styleColorSubtitle?: string
-  styleColorSubtitleError?: string
-  styleColorTitle?: string
-  styleColorTitleError?: string
-  styleColumnButtons?: StyleProp<ViewStyle>
-  styleColumnDeleteButton?: StyleProp<ViewStyle>
-  styleContainer: StyleProp<ViewStyle>
-  styleContainerPinCode?: StyleProp<ViewStyle>
-  styleDeleteButtonColorHideUnderlay?: string
-  styleDeleteButtonColorShowUnderlay?: string
-  styleDeleteButtonIcon?: string
-  styleDeleteButtonSize?: number
-  styleDeleteButtonText?: StyleProp<TextStyle>
-  styleEmptyColumn?: StyleProp<ViewStyle>
-  stylePinCodeCircle?: StyleProp<ViewStyle>
-  styleRowButtons?: StyleProp<ViewStyle>
-  styleTextButton?: StyleProp<TextStyle>
-  styleTextSubtitle?: StyleProp<TextStyle>
-  styleTextTitle?: StyleProp<TextStyle>
-  styleViewTitle?: StyleProp<ViewStyle>
-  subtitleChoose: string
-  subtitleComponent: any
-  subtitleConfirm: string
-  subtitleError?: string
-  textPasswordVisibleFamily?: string
-  textPasswordVisibleSize?: number
-  titleAttemptFailed?: string
-  titleChoose: string
-  titleComponent: any
-  titleConfirm: string
-  titleConfirmFailed?: string
-  titleValidationFailed?: string
-  validationRegex?: RegExp
-  vibrationEnabled?: boolean
-  delayBetweenAttempts?: number
-  footerComponent: any
-  deleteIcon: any;
+  alphabetCharsVisible?: boolean;
+  buttonDeleteComponent: any;
+  buttonDeleteText?: string;
+  buttonNumberComponent: any;
+  colorCircleButtons?: string;
+  colorPassword?: string;
+  colorPasswordEmpty?: string;
+  colorPasswordError?: string;
+  customBackSpaceIcon?: any;
+  emptyColumnComponent: any;
+  finishProcess?: (pinCode: string) => void;
+  getCurrentLength?: (length: number) => void;
+  iconButtonDeleteDisabled?: boolean;
+  numbersButtonOverlayColor?: string;
+  passwordComponent: any;
+  passwordLength?: number;
+  pinCodeKeychainName: string;
+  pinCodeVisible?: boolean;
+  storePin: any;
+  styleAlphabet?: StyleProp<TextStyle>;
+  styleButtonCircle?: StyleProp<ViewStyle>;
+  styleCircleHiddenPassword?: StyleProp<ViewStyle>;
+  styleCircleSizeEmpty?: number;
+  styleCircleSizeFull?: number;
+  styleColorButtonTitle?: string;
+  styleColorButtonTitleSelected?: string;
+  styleColorSubtitle?: string;
+  styleColorSubtitleError?: string;
+  styleColorTitle?: string;
+  styleColorTitleError?: string;
+  styleColumnButtons?: StyleProp<ViewStyle>;
+  styleColumnDeleteButton?: StyleProp<ViewStyle>;
+  styleContainer: StyleProp<ViewStyle>;
+  styleContainerPinCode?: StyleProp<ViewStyle>;
+  styleDeleteButtonColorHideUnderlay?: string;
+  styleDeleteButtonColorShowUnderlay?: string;
+  styleDeleteButtonIcon?: string;
+  styleDeleteButtonSize?: number;
+  styleDeleteButtonText?: StyleProp<TextStyle>;
+  styleEmptyColumn?: StyleProp<ViewStyle>;
+  stylePinCodeCircle?: StyleProp<ViewStyle>;
+  styleRowButtons?: StyleProp<ViewStyle>;
+  styleTextButton?: StyleProp<TextStyle>;
+  styleTextSubtitle?: StyleProp<TextStyle>;
+  styleTextTitle?: StyleProp<TextStyle>;
+  styleViewTitle?: StyleProp<ViewStyle>;
+  subtitleChoose: string;
+  subtitleComponent: any;
+  subtitleConfirm: string;
+  subtitleError?: string;
+  textPasswordVisibleFamily?: string;
+  textPasswordVisibleSize?: number;
+  titleAttemptFailed?: string;
+  titleChoose: string;
+  titleComponent: any;
+  titleConfirm: string;
+  titleConfirmFailed?: string;
+  titleValidationFailed?: string;
+  validationRegex?: RegExp;
+  vibrationEnabled?: boolean;
+  delayBetweenAttempts?: number;
+  footerComponent?: any;
+  fontFamily?: string;
 }
 
 export type IState = {
-  status: PinStatus
-  pinCode: string
-}
+  status: PinStatus;
+  pinCode: string;
+};
 
 class PinCodeChoose extends React.PureComponent<IProps, IState> {
   static defaultProps: Partial<IProps> = {
-    styleContainer: null
-  }
+    styleContainer: null,
+  };
   constructor(props: IProps) {
-    super(props)
-    this.state = { status: PinStatus.choose, pinCode: '' }
-    this.endProcessCreation = this.endProcessCreation.bind(this)
-    this.endProcessConfirm = this.endProcessConfirm.bind(this)
+    super(props);
+    this.state = { status: PinStatus.choose, pinCode: '' };
+    this.endProcessCreation = this.endProcessCreation.bind(this);
+    this.endProcessConfirm = this.endProcessConfirm.bind(this);
   }
 
   endProcessCreation = (pinCode: string, isErrorValidation?: boolean) => {
     this.setState({
       pinCode: isErrorValidation ? '' : pinCode,
-      status: isErrorValidation ? PinStatus.choose : PinStatus.confirm
-    })
-  }
+      status: isErrorValidation ? PinStatus.choose : PinStatus.confirm,
+    });
+  };
 
   endProcessConfirm = async (pinCode: string) => {
     if (pinCode === this.state.pinCode) {
-      this.setState({
-        pinCode: pinCode,
-      });
+      if (this.props.storePin) {
+        this.props.storePin(pinCode);
+      } else {
+        await Keychain.setInternetCredentials(
+          this.props.pinCodeKeychainName,
+          this.props.pinCodeKeychainName,
+          pinCode,
+          noBiometricsConfig
+        );
+      }
+      if (!!this.props.finishProcess) this.props.finishProcess(pinCode);
     } else {
-      this.setState({ status: PinStatus.choose })
+      this.setState({ status: PinStatus.choose });
     }
-  }
-
-  onPressedFinish = async () => {
-    await Keychain.setInternetCredentials(
-      this.props.pinCodeKeychainName,
-      this.props.pinCodeKeychainName,
-      this.state.pinCode,
-      noBiometricsConfig
-    )
-    if (!!this.props.finishProcess) this.props.finishProcess(this.state.pinCode);
-  }
+  };
 
   cancelConfirm = () => {
-    this.setState({ status: PinStatus.choose })
-  }
+    this.setState({ status: PinStatus.choose });
+  };
 
   render() {
     return (
-      <View
-        style={[
-          styles.container,
-          this.props.styleContainer
-        ]}>
+      <View style={[styles.container, this.props.styleContainer]}>
         {this.state.status === PinStatus.choose && (
           <PinCode
             alphabetCharsVisible={this.props.alphabetCharsVisible}
@@ -197,11 +195,11 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             }
             validationRegex={this.props.validationRegex}
             vibrationEnabled={this.props.vibrationEnabled}
-            deleteIcon={this.props.deleteIcon}
+            footerComponent={this.props.footerComponent}
+            fontFamily={this.props.fontFamily}
           />
         )}
         {this.state.status === PinStatus.confirm && (
-          <>
           <PinCode
             alphabetCharsVisible={this.props.alphabetCharsVisible}
             buttonDeleteComponent={this.props.buttonDeleteComponent || null}
@@ -272,33 +270,21 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             styleViewTitle={this.props.styleViewTitle}
             vibrationEnabled={this.props.vibrationEnabled}
             delayBetweenAttempts={this.props.delayBetweenAttempts}
-            deleteIcon={this.props.deleteIcon}
+            footerComponent={this.props.footerComponent}
+            fontFamily={this.props.fontFamily}
           />
-          </>
         )}
-        
-        <View style={styles.footerContainer}>
-        {this.state.status === PinStatus.confirm && (
-          this.props.footerComponent(this.onPressedFinish)
-          )}
-        </View>
       </View>
-    )
+    );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: width
   },
-  footerContainer: {
-    width: "100%",
-    minHeight: "10%"
-  }
-})
+});
 
-export default PinCodeChoose
+export default PinCodeChoose;

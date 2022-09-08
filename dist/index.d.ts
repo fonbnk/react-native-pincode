@@ -1,6 +1,6 @@
-import { PinResultStatus } from "./src/utils";
-import * as React from "react";
-import { StyleProp, ViewStyle, TextStyle } from "react-native";
+import { PinResultStatus } from './src/utils';
+import * as React from 'react';
+import { StyleProp, ViewStyle, TextStyle } from 'react-native';
 export declare type IProps = {
     alphabetCharsVisible?: boolean;
     bottomLeftComponent?: any;
@@ -16,7 +16,7 @@ export declare type IProps = {
     customBackSpaceIcon?: any;
     disableLockScreen?: boolean;
     endProcessFunction?: (pinCode: string) => void;
-    finishProcess?: (pinCode: string) => void;
+    finishProcess?: (pinCode?: string) => void;
     getCurrentPinLength?: (length: number) => void;
     handleResultEnterPin?: any;
     iconComponentLockedPage?: any;
@@ -33,7 +33,7 @@ export declare type IProps = {
     pinCodeKeychainName?: string;
     pinCodeVisible?: boolean;
     pinStatus?: PinResultStatus;
-    status: "choose" | "enter" | "locked";
+    status: 'choose' | 'enter' | 'locked';
     storedPin?: string;
     storePin?: any;
     styleAlphabet?: StyleProp<TextStyle>;
@@ -108,8 +108,8 @@ export declare type IProps = {
     passcodeFallback?: boolean;
     vibrationEnabled?: boolean;
     delayBetweenAttempts?: number;
-    footerComponent: any;
-    deleteIcon: any;
+    footerComponent?: any;
+    fontFamily?: string;
 };
 export declare type IState = {
     internalPinStatus: PinResultStatus;

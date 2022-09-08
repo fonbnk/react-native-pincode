@@ -12,7 +12,7 @@ var PinResultStatus;
     PinResultStatus["locked"] = "locked";
 })(PinResultStatus = exports.PinResultStatus || (exports.PinResultStatus = {}));
 const hasPinCode = async (serviceName) => {
-    return await Keychain.getInternetCredentials(serviceName).then(res => {
+    return await Keychain.getInternetCredentials(serviceName).then((res) => {
         return !!res && !!res.password;
     });
 };
@@ -29,5 +29,5 @@ exports.noBiometricsConfig = react_native_1.Platform.select({
     android: {
         accessControl: Keychain.ACCESS_CONTROL.APPLICATION_PASSWORD,
     },
-    ios: {}
+    ios: {},
 });

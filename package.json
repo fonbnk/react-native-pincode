@@ -8,7 +8,7 @@
     "dev": "yarn build -watch",
     "build": "tsc",
     "compile": "npm run build",
-    "addlocal": "yarn add file:./local_modules/react-native-pincode",
+    "addlocal": "yarn add file:./local_modules/react-native-pincode/src",
     "test": "jest",
     "pretty": "prettier --single-quote --no-semi --jsx-bracket-same-line --write \"src/**/*.{ts, tsx}\""
   },
@@ -26,12 +26,11 @@
   },
   "homepage": "https://github.com/Haskkor/react-native-pincode#readme",
   "devDependencies": {
+    "@babel/core": "7.16.10",
     "@types/d3-ease": "1.0.7",
     "@types/lodash": "4.14.178",
     "@types/react": "17.0.38",
     "@types/react-native": "0.66.13",
-    "@types/react-native-vector-icons": "6.4.10",
-    "@babel/core": "7.16.10",
     "babel-jest": "27.4.6",
     "enzyme": "3.11.0",
     "jest": "27.4.7",
@@ -45,13 +44,13 @@
     "typescript": "4.2.4"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "1.15.15",
-    "d3-ease": "1.0.3",
+    "@react-native-async-storage/async-storage": "1.17.10",
+    "d3-ease": "3.0.1",
     "lodash": "4.17.21",
+    "react-move": "6.5.0",
     "react-native-easy-grid": "0.2.2",
-    "react-native-keychain": "6.1.1",
-    "react-native-touch-id": "4.4.1",
-    "react-move": "2.7.0"
+    "react-native-keychain": "8.1.1",
+    "react-native-touch-id": "4.4.1"
   },
   "peerDependencies": {
     "react": "*",

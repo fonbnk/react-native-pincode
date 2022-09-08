@@ -66,8 +66,8 @@ export interface IProps {
     validationRegex?: RegExp;
     vibrationEnabled?: boolean;
     delayBetweenAttempts?: number;
-    footerComponent: any;
-    deleteIcon: any;
+    footerComponent?: any;
+    fontFamily?: string;
 }
 export declare type IState = {
     status: PinStatus;
@@ -78,7 +78,6 @@ declare class PinCodeChoose extends React.PureComponent<IProps, IState> {
     constructor(props: IProps);
     endProcessCreation: (pinCode: string, isErrorValidation?: boolean) => void;
     endProcessConfirm: (pinCode: string) => Promise<void>;
-    onPressedFinish: () => Promise<void>;
     cancelConfirm: () => void;
     render(): JSX.Element;
 }
